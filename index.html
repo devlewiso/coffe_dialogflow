@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aromatic Coffee ☕ - The taste that awakens your senses</title>
+
+  <style>
+    /* ---------- RESET ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2c1810;
+      overflow-x: hidden;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #3e2723, #6d4c41);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: drift 20s linear infinite;
+    }
+
+    @keyframes drift { to { transform: translate(50px, 50px); } }
+
+    .hero-content {
+      z-index: 1;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .hero .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: #ff6f00;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+    }
+
+    .cta-button:hover {
+      background: #f57c00;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 111, 0, 0.6);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section { padding: 5rem 2rem; }
+    h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+
+    /* ---------- FEATURES ---------- */
+    .features { background: #f5f5f5; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .feature-card h3 { color: #5d4037; margin-bottom: 1rem; }
+    .feature-card p { color: #666; line-height: 1.6; }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      background: linear-gradient(135deg, #6d4c41, #5d4037);
+      color: white;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery h2 { color: #3e2723; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #5d4037, #8d6e63);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      transition: 0.3s;
+    }
+
+    .gallery-item:hover { transform: scale(1.05); }
+
+    /* ---------- CONTACT ---------- */
+    .contact { background: #f5f5f5; text-align: center; }
+    .contact-info {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .contact-info p { margin: 1rem 0; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #3e2723;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .tagline { font-size: 1.2rem; }
+      h2 { font-size: 2rem; }
+    }
+
+    /* ---------- DIALOGFLOW STYLING ---------- */
+    df-messenger {
+      --df-messenger-bot-message: #6d4c41;
+      --df-messenger-user-message: #8d6e63;
+      --df-messenger-chat-background-color: #f5ede5;
+      --df-messenger-font-color: white;
+      --df-messenger-send-icon: #4e342e;
+      --df-messenger-button-titlebar-color: #4e342e;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Aromatic Coffee ☕</h1>
+      <p class="tagline">The taste that awakens your senses</p>
+      <a href="#contact" class="cta-button">Discover Our Coffee</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>100% Organic</h3>
+        <p>Beans grown sustainably without chemicals or pesticides, respecting nature.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <h3>Artisan Roasted</h3>
+        <p>Each batch is carefully roasted to highlight the unique flavors of each origin.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Select Origins</h3>
+        <p>We work directly with producers from Guatemala, Colombia and Brazil to bring you the best.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Freshness Guaranteed</h3>
+        <p>From roasting to your cup in less than 48 hours. Fresh coffee, always.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💝</div>
+        <h3>Passion in Every Bean</h3>
+        <p>We love what we do and it shows in every sip of our coffee.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h3>Fast Shipping</h3>
+        <p>Receive your coffee at your doorstep with express shipping throughout Guatemala.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>Our Story</h2>
+    <p>
+      Aromatic Coffee was born from a deep passion for specialty coffee. We started as a small
+      local roaster with the dream of sharing the exceptional flavors of Guatemalan coffees with the world.
+      Today, we work hand in hand with local producers, guaranteeing premium quality and fair practices.
+      Each cup tells a story of dedication, tradition, and love for coffee.
+    </p>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery">
+    <h2>Our Coffees</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">☕</div>
+      <div class="gallery-item">🌰</div>
+      <div class="gallery-item">🫘</div>
+      <div class="gallery-item">🔥</div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>📍 Guatemala City, Guatemala</p>
+      <p>📧 info@aromaticcoffee.com</p>
+      <p>📱 +502 1234-5678</p>
+      <p style="margin-top: 2rem;">
+        <a href="#" class="cta-button">Place Order</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Aromatic Coffee. All rights reserved.</p>
+    <p>Made with ❤️ and lots of coffee</p>
+  </footer>
+
+  <!-- Dialogflow Messenger Integration -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+    intent="WELCOME"
+    chat-title="Cafesito ☕"
+    agent-id="ea82458d-a7ed-4bd7-9a33-d1785781a982"
+    language-code="en">
+  </df-messenger>
+</body>
+</html>
