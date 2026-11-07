@@ -1,294 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aromatic Coffee ☕ - The taste that awakens your senses</title>
-
-  <style>
-    /* ---------- RESET ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #2c1810;
-      overflow-x: hidden;
-    }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #3e2723, #6d4c41);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: drift 20s linear infinite;
-    }
-
-    @keyframes drift { to { transform: translate(50px, 50px); } }
-
-    .hero-content {
-      z-index: 1;
-      padding: 2rem;
-      max-width: 800px;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      animation: fadeInDown 1s ease-out;
-    }
-
-    .hero .tagline {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      animation: fadeInUp 1s ease-out 0.3s both;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 3rem;
-      background: #ff6f00;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      transition: 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
-    }
-
-    .cta-button:hover {
-      background: #f57c00;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(255, 111, 0, 0.6);
-    }
-
-    /* ---------- SECTIONS ---------- */
-    section { padding: 5rem 2rem; }
-    h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
-
-    /* ---------- FEATURES ---------- */
-    .features { background: #f5f5f5; }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .feature-card h3 { color: #5d4037; margin-bottom: 1rem; }
-    .feature-card p { color: #666; line-height: 1.6; }
-
-    /* ---------- ABOUT ---------- */
-    .about {
-      background: linear-gradient(135deg, #6d4c41, #5d4037);
-      color: white;
-      text-align: center;
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      opacity: 0.95;
-    }
-
-    /* ---------- GALLERY ---------- */
-    .gallery h2 { color: #3e2723; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery-item {
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, #5d4037, #8d6e63);
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      transition: 0.3s;
-    }
-
-    .gallery-item:hover { transform: scale(1.05); }
-
-    /* ---------- CONTACT ---------- */
-    .contact { background: #f5f5f5; text-align: center; }
-    .contact-info {
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      color: #666;
-    }
-
-    .contact-info p { margin: 1rem 0; }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: #3e2723;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    /* ---------- ANIMATIONS ---------- */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .hero .tagline { font-size: 1.2rem; }
-      h2 { font-size: 2rem; }
-    }
-
-    /* ---------- DIALOGFLOW STYLING ---------- */
-    df-messenger {
-      --df-messenger-bot-message: #6d4c41;
-      --df-messenger-user-message: #8d6e63;
-      --df-messenger-chat-background-color: #f5ede5;
-      --df-messenger-font-color: white;
-      --df-messenger-send-icon: #4e342e;
-      --df-messenger-button-titlebar-color: #4e342e;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aromatic Coffee — Café de especialidad con asistente virtual</title>
+  <meta name="description" content="Cafetería de especialidad en Guatemala con asistente virtual: pedí, preguntá por el menú y reservá por chat. Plantilla gratis de NeuralCodeLab con Dialogflow.">
+  <meta name="theme-color" content="#2E1F1A">
+  <meta property="og:title" content="Aromatic Coffee — Café de especialidad">
+  <meta property="og:description" content="Pedí tu café por chat con Cafesito, nuestro asistente virtual.">
+  <meta property="og:image" content="assets/og.jpg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Aromatic Coffee ☕</h1>
-      <p class="tagline">The taste that awakens your senses</p>
-      <a href="#contact" class="cta-button">Discover Our Coffee</a>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__in">
+      <a href="#inicio" class="logo" aria-label="Aromatic Coffee, inicio">
+        <span class="logo__mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+        </span>
+        Aromatic<span class="light">Coffee</span>
+      </a>
+      <nav aria-label="Principal">
+        <ul class="menu" id="menu">
+          <li><a href="#menu-cafe">Menú</a></li>
+          <li><a href="#asistente">Asistente</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#visitanos">Visitanos</a></li>
+          <li><button class="btn btn--sm" type="button" data-chat>Pedir por chat</button></li>
+        </ul>
+      </nav>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
     </div>
-  </section>
+  </header>
 
-  <!-- Features Section -->
-  <section class="features">
-    <h2>Why Choose Us?</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🌱</div>
-        <h3>100% Organic</h3>
-        <p>Beans grown sustainably without chemicals or pesticides, respecting nature.</p>
+  <main id="contenido">
+    <!-- Portada -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero__grid">
+        <div>
+          <p class="badge">☕ Café de especialidad · Guatemala</p>
+          <h1>El aroma que <em>despierta</em> tus sentidos.</h1>
+          <p class="lead">Tostamos en pequeños lotes granos de Huehuetenango, Antigua y Atitlán. Pedí desde el chat en segundos: Cafesito te ayuda a elegir y tu bebida te espera lista.</p>
+          <div class="ctas">
+            <button class="btn" type="button" data-chat>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
+              Hablar con Cafesito
+            </button>
+            <a class="btn btn--ghost" href="#menu-cafe">Ver el menú</a>
+          </div>
+          <dl class="mini">
+            <div><dt>Abierto hoy</dt><dd>6:30 – 20:00</dd></div>
+            <div><dt>Listo en</dt><dd>~5 min</dd></div>
+            <div><dt>Calificación</dt><dd>4.8 ★</dd></div>
+          </dl>
+        </div>
+
+        <div class="cup-scene" aria-hidden="true">
+          <div class="blob"></div>
+          <div class="steam"><span></span><span></span><span></span></div>
+          <svg class="cup" viewBox="0 0 320 300">
+            <defs>
+              <linearGradient id="taza" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EADBCB"/></linearGradient>
+              <radialGradient id="cafe" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#C47A3D"/><stop offset=".6" stop-color="#7A4527"/><stop offset="1" stop-color="#4A2A1A"/></radialGradient>
+            </defs>
+            <ellipse cx="160" cy="268" rx="140" ry="22" fill="#2E1F1A" opacity=".12"/>
+            <ellipse cx="160" cy="258" rx="130" ry="26" fill="url(#taza)" stroke="#E2D2C0"/>
+            <path d="M262 120c34 0 46 18 46 38s-14 40-50 42" fill="none" stroke="#F3E9DE" stroke-width="18" stroke-linecap="round"/>
+            <path d="M48 96h224l-16 118c-4 26-26 40-52 40h-88c-26 0-48-14-52-40z" fill="url(#taza)" stroke="#E2D2C0"/>
+            <ellipse cx="160" cy="96" rx="112" ry="26" fill="#F7EFE6" stroke="#E2D2C0"/>
+            <ellipse cx="160" cy="98" rx="100" ry="20" fill="url(#cafe)"/>
+            <path d="M160 86c-14 2-22 10-14 14 6 3 14-6 14-6s8 9 14 6c8-4 0-12-14-14z" fill="#F1D9BE" opacity=".9"/>
+          </svg>
+          <div class="chip chip--1"><b>Latte de vainilla</b><span>Q28 · listo en 5 min</span></div>
+          <div class="chip chip--2"><span class="ok">✓</span> Pedido confirmado</div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔥</div>
-        <h3>Artisan Roasted</h3>
-        <p>Each batch is carefully roasted to highlight the unique flavors of each origin.</p>
+    </section>
+
+    <!-- Ventajas -->
+    <section class="strip">
+      <div class="wrap strip__in">
+        <p><b>100%</b> granos de Guatemala</p>
+        <p><b>Tueste</b> semanal</p>
+        <p><b>Pedidos</b> por chat 24/7</p>
+        <p><b>Envío</b> en la ciudad</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌍</div>
-        <h3>Select Origins</h3>
-        <p>We work directly with producers from Guatemala, Colombia and Brazil to bring you the best.</p>
+    </section>
+
+    <!-- Menú -->
+    <section class="section" id="menu-cafe">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="eyebrow">Nuestro menú</p>
+          <h2>Bebidas hechas <em>con calma.</em></h2>
+        </div>
+        <div class="tabs reveal" role="tablist" aria-label="Categorías del menú">
+          <button role="tab" aria-selected="true" data-cat="calientes">Calientes</button>
+          <button role="tab" aria-selected="false" data-cat="frias">Frías</button>
+          <button role="tab" aria-selected="false" data-cat="grano">Café en grano</button>
+        </div>
+        <ul class="drinks" id="drinks">
+          <li data-cat="calientes"><div><h3>Espresso</h3><p>Doble, intenso, con crema dorada.</p></div><span>Q15</span></li>
+          <li data-cat="calientes"><div><h3>Americano</h3><p>Espresso alargado con agua caliente.</p></div><span>Q18</span></li>
+          <li data-cat="calientes"><div><h3>Cappuccino</h3><p>Espresso, leche vaporizada y mucha espuma.</p></div><span>Q25</span></li>
+          <li data-cat="calientes"><div><h3>Latte de vainilla <small>Favorito</small></h3><p>Suave, cremoso y con vainilla natural.</p></div><span>Q28</span></li>
+          <li data-cat="calientes"><div><h3>Chocolate guatemalteco</h3><p>Cacao de Cobán batido con canela.</p></div><span>Q22</span></li>
+          <li data-cat="calientes"><div><h3>Café de olla</h3><p>Con panela y especias, como en casa.</p></div><span>Q20</span></li>
+          <li data-cat="frias" hidden><div><h3>Cold brew</h3><p>Infusión en frío por 18 horas.</p></div><span>Q26</span></li>
+          <li data-cat="frias" hidden><div><h3>Iced latte</h3><p>Espresso, leche fría y hielo.</p></div><span>Q27</span></li>
+          <li data-cat="frias" hidden><div><h3>Frappé de caramelo <small>Nuevo</small></h3><p>Café, caramelo y crema batida.</p></div><span>Q32</span></li>
+          <li data-cat="frias" hidden><div><h3>Espresso tonic</h3><p>Agua tónica, limón y espresso.</p></div><span>Q29</span></li>
+          <li data-cat="grano" hidden><div><h3>Huehuetenango · 340 g</h3><p>Frutal y brillante. Notas a uva y panela.</p></div><span>Q95</span></li>
+          <li data-cat="grano" hidden><div><h3>Antigua · 340 g</h3><p>Cuerpo medio, chocolate y especias.</p></div><span>Q90</span></li>
+          <li data-cat="grano" hidden><div><h3>Atitlán · 340 g</h3><p>Cítrico y floral, final limpio.</p></div><span>Q92</span></li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Freshness Guaranteed</h3>
-        <p>From roasting to your cup in less than 48 hours. Fresh coffee, always.</p>
+    </section>
+
+    <!-- Asistente -->
+    <section class="section asistente" id="asistente">
+      <div class="wrap asistente__grid">
+        <div class="reveal">
+          <p class="eyebrow eyebrow--light">Asistente virtual</p>
+          <h2>Conocé a <em>Cafesito.</em></h2>
+          <p class="muted">Nuestro asistente con inteligencia artificial te atiende a cualquier hora: te recomienda una bebida, responde dudas del menú y toma tu pedido para que pases a recogerlo.</p>
+          <ul class="checks">
+            <li>Recomendaciones según tu gusto</li>
+            <li>Horarios, ubicación y precios al instante</li>
+            <li>Pedidos para llevar sin hacer fila</li>
+          </ul>
+          <button class="btn btn--light" type="button" data-chat>Probar el chat</button>
+        </div>
+        <div class="phone reveal" aria-label="Ejemplo de conversación con Cafesito">
+          <div class="phone__top"><span class="av">☕</span><div><b>Cafesito</b><small>En línea</small></div></div>
+          <div class="msgs" id="msgs">
+            <p class="msg bot">¡Hola! Soy Cafesito ☕ ¿Qué se te antoja hoy?</p>
+            <p class="msg me">Algo frío pero no tan dulce</p>
+            <p class="msg bot">Te recomiendo un <b>cold brew</b> (Q26): suave, con notas a chocolate y sin azúcar. ¿Te lo preparo?</p>
+            <p class="msg me">Sí, para llevar 🙌</p>
+            <p class="msg bot">¡Listo! Tu cold brew estará en 5 minutos. Pagás al recoger.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">💝</div>
-        <h3>Passion in Every Bean</h3>
-        <p>We love what we do and it shows in every sip of our coffee.</p>
+    </section>
+
+    <!-- Nosotros -->
+    <section class="section" id="nosotros">
+      <div class="wrap nosotros">
+        <div class="reveal">
+          <p class="eyebrow">Nuestra historia</p>
+          <h2>De un tostador pequeño <em>a tu taza.</em></h2>
+        </div>
+        <div class="reveal">
+          <p class="big">Aromatic Coffee nació de las ganas de compartir los cafés de Guatemala como se merecen. Empezamos con un tostador pequeño y hoy trabajamos directo con fincas de tres regiones, pagando precios justos.</p>
+          <div class="nums">
+            <div><b>3</b><span>regiones de origen</span></div>
+            <div><b>12</b><span>fincas aliadas</span></div>
+            <div><b>48 h</b><span>del tueste a la taza</span></div>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚚</div>
-        <h3>Fast Shipping</h3>
-        <p>Receive your coffee at your doorstep with express shipping throughout Guatemala.</p>
+    </section>
+
+    <!-- Visitanos -->
+    <section class="section visita" id="visitanos">
+      <div class="wrap visita__card reveal">
+        <div>
+          <p class="eyebrow">Visitanos</p>
+          <h2>Te esperamos <em>con el café listo.</em></h2>
+          <p class="dir">Zona 10, Ciudad de Guatemala</p>
+          <p class="dir">hola@aromaticcoffee.gt · +502 0000-0000</p>
+        </div>
+        <table class="horario">
+          <caption class="sr-only">Horario</caption>
+          <tr><th scope="row">Lunes a viernes</th><td>6:30 – 20:00</td></tr>
+          <tr><th scope="row">Sábado</th><td>7:00 – 21:00</td></tr>
+          <tr><th scope="row">Domingo</th><td>8:00 – 18:00</td></tr>
+        </table>
       </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__in">
+      <span class="logo logo--light">Aromatic<span class="light">Coffee</span></span>
+      <p>© <span id="anio">2026</span> Aromatic Coffee</p>
+      <p>Plantilla gratis por <a href="https://neuralcodelab.com/plantillas-gratis" target="_blank" rel="noopener">NeuralCodeLab</a></p>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="about">
-    <h2>Our Story</h2>
-    <p>
-      Aromatic Coffee was born from a deep passion for specialty coffee. We started as a small
-      local roaster with the dream of sharing the exceptional flavors of Guatemalan coffees with the world.
-      Today, we work hand in hand with local producers, guaranteeing premium quality and fair practices.
-      Each cup tells a story of dedication, tradition, and love for coffee.
-    </p>
-  </section>
-
-  <!-- Gallery Section -->
-  <section class="gallery">
-    <h2>Our Coffees</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">☕</div>
-      <div class="gallery-item">🌰</div>
-      <div class="gallery-item">🫘</div>
-      <div class="gallery-item">🔥</div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p>📍 Guatemala City, Guatemala</p>
-      <p>📧 info@aromaticcoffee.com</p>
-      <p>📱 +502 1234-5678</p>
-      <p style="margin-top: 2rem;">
-        <a href="#" class="cta-button">Place Order</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Aromatic Coffee. All rights reserved.</p>
-    <p>Made with ❤️ and lots of coffee</p>
   </footer>
 
-  <!-- Dialogflow Messenger Integration -->
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-  <df-messenger
-    intent="WELCOME"
-    chat-title="Cafesito ☕"
-    agent-id="ea82458d-a7ed-4bd7-9a33-d1785781a982"
-    language-code="en">
-  </df-messenger>
+  <!-- Chat de Cafesito (funciona sin servidor; ver js/main.js) -->
+  <div class="chat" id="chat" hidden role="dialog" aria-modal="false" aria-labelledby="chat-titulo">
+    <div class="chat__top">
+      <span class="av" aria-hidden="true">☕</span>
+      <div><b id="chat-titulo">Cafesito</b><small>Asistente de Aromatic Coffee</small></div>
+      <button class="chat__x" type="button" id="chat-cerrar" aria-label="Cerrar chat">×</button>
+    </div>
+    <div class="chat__msgs" id="chat-msgs" aria-live="polite"></div>
+    <div class="chat__quick" id="chat-quick"></div>
+    <form class="chat__form" id="chat-form">
+      <label class="sr-only" for="chat-input">Escribí tu mensaje</label>
+      <input id="chat-input" autocomplete="off" placeholder="Escribí tu mensaje…">
+      <button type="submit" aria-label="Enviar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+    </form>
+  </div>
+  <button class="chat-fab" type="button" data-chat aria-label="Abrir chat con Cafesito">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
+  </button>
+
+  <!--
+    ¿Tenés un agente de Dialogflow ES? Reemplazá el chat de arriba por el oficial:
+    1. En la consola de Dialogflow: Integrations → Dialogflow Messenger → Enable, y copiá el agent-id.
+    2. Borrá el bloque .chat y .chat-fab de arriba, y descomentá estas dos líneas:
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger chat-icon="assets/favicon.svg" intent="WELCOME" chat-title="Cafesito" agent-id="TU-AGENT-ID" language-code="es"></df-messenger>
+    Los colores del df-messenger ya están en css/styles.css.
+  -->
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>

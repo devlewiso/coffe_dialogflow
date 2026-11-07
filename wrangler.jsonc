@@ -1,0 +1,7 @@
+// Sitio estático servido por Cloudflare Workers. Deploy: npx wrangler deploy
+{
+  "name": "aromatic-coffee",
+  "compatibility_date": "2026-09-01",
+  "assets": { "directory": "." },
+  "routes": [{ "pattern": "aromatic.neuralcodelab.com", "custom_domain": true }]
+}
